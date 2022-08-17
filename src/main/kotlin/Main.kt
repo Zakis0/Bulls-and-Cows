@@ -3,7 +3,7 @@ import kotlin.random.Random
 const val LENGTH_OF_NUMBER: Short = 4
 const val NUM_OF_ROUNDS: Short = 10
 
-const val BASE_OF_DECIMAL_SYSTEM = 10
+const val BASE_OF_DECIMAL_SYSTEM: Short = 10
 
 fun main() {
     bullsAndCows()
@@ -35,21 +35,26 @@ fun bullsAndCows() {
 }
 
 fun getRandIntWithUnrepeatedDigits(len: Short): String {
+    if (len == 0.toShort()) return ""
+
     var result = ""
-    var newDigit: Int
-    for (i in 0 until len) {
-        do newDigit = Random.nextInt(0, BASE_OF_DECIMAL_SYSTEM)
+    var newDigit: Short
+
+    result += Random.nextInt(1, BASE_OF_DECIMAL_SYSTEM.toInt())
+
+    for (i in 0 until len - 1) {
+        do newDigit = (Random.nextInt(0, BASE_OF_DECIMAL_SYSTEM.toInt())).toShort()
         while (result.contains(newDigit.toString()))
         result += newDigit.toString()
     }
-    if (result[0] == '0')
-        return getRandIntWithUnrepeatedDigits(len)
     return result
 }
 
 fun getNumber(): String {
     val number = readln()
-    if (!isNumberString(number) || number.length != LENGTH_OF_NUMBER.toInt()) {
+    if (!isNumberString(number) || number.length.toShort() != LENGTH_OF_NUMBER ||
+        containsRepeatedDigits(number))
+    {
         println("Incorrect input")
         return getNumber()
     }
@@ -58,6 +63,14 @@ fun getNumber(): String {
 
 fun isNumberString(string: String?): Boolean {
     return if (string.isNullOrEmpty()) false else string.all { Character.isDigit(it) }
+}
+
+fun containsRepeatedDigits(string: String): Boolean {
+    for (i in 0 until string.length - 1)
+        for (j in i + 1 until string.length)
+            if (string[i] == string[j])
+                return true
+    return false
 }
 
 fun getNumOfCows(secretNumber: String, supposedNumber: String): Short {
