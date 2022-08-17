@@ -18,8 +18,6 @@ fun bullsAndCows() {
 
     val secretNumber = getRandIntWithUnrepeatedDigits(LENGTH_OF_NUMBER)
 
-    println(secretNumber)
-
     println("Input supposed $LENGTH_OF_NUMBER-digit number")
 
     for (i in 0 until NUM_OF_ROUNDS) {
