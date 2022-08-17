@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Bulls-and-Cows
-=======
 # Bulls and Cows
 
 The program generated a four-digit secret number. All digits are different.
@@ -16,4 +13,3 @@ Result: Num of bulls: 1, num of cows: 2 (The bull is "2", the cows are "4" and "
 
 You have 10 attempt to guess secret number.
 Good luck!
->>>>>>> 7b8549d (first commit)
